@@ -219,17 +219,17 @@ class GTSP:
         plt.show()
 
 if __name__ == "__main__":
-    mode,iteration='39_25',1000    #城市例子模式,迭代次数
+    mode,iteration='39_25',100000    #城市例子模式,迭代次数
 
     algorithms=[
-        SA(2,1,0.9,GTSP(mode=mode),iteration//10),              #模拟退火
-        TS(20,GTSP(mode=mode),iteration),                       #禁忌搜索
-        GA(100,0.25,0.05,GTSP(mode=mode),iteration),            #遗传算法
-        AC(20,1,1,0.3,1,GTSP(mode=mode),iteration)              #蚁群算法
+        # SA(10,9,0.9,GTSP(mode=mode),iteration),                # 模拟退火
+        # TS(20,GTSP(mode=mode),iteration),                      # 禁忌搜索
+        # GA(100,0.7,0.05,GTSP(mode=mode),iteration),            # 遗传算法
+        AC(10,1,0.9,0.05,0.3,GTSP(mode=mode),iteration)          # 蚁群算法
     ]
 
     for algo in algorithms:
-        tsp=algo.solve()            # 应用算法解决TSP问题
+        tsp=algo.solve(record_step=1000)            # 应用算法解决TSP问题
         algo.plot_iter_cost()       # 画出迭代曲线
         tsp.plot_path()             # 画出解的图   
     

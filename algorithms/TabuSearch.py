@@ -36,8 +36,10 @@ class TS(Heuristic):
         paths=[]
 
         # 1. 第一类 交换城市顺序
-        for i in range(1,len(best_path)-1):
+        for i in range(1,len(best_path)):
             for j in range(i+1,len(best_path)):
+            # j=i
+            # while j==i: j=random.choice(list(range(len(best_path))))
                 path=best_path.copy()
                 path[i],path[j]=path[j],path[i] 
                 paths.append(path)
@@ -46,8 +48,9 @@ class TS(Heuristic):
         for i in range(len(best_path)):
             for group in self.TSP.city_index_groups:
                 if best_path[i] in group:
-                    group.remove(best_path[i]) # 移除自己
-                    for other_city in group: 
+                    group_copy=group.copy()
+                    group_copy.remove(best_path[i]) # 移除自己
+                    for other_city in group_copy: 
                         path=best_path.copy()
                         path[i]=other_city
                         paths.append(path)
@@ -93,7 +96,7 @@ class TS(Heuristic):
             elif best_path in self.taboo_table:
                 #2.2===大于期望  且最优解在禁忌表===
                 # 选择不在禁忌表中的最优解
-                while best_path in self.taboo_table:
+                while best_path in self.taboo_table :
                     paths.remove(best_path)
                     best_dist,best_path=self.find_best_dist_path(paths)
 

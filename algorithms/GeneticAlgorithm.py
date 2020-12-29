@@ -86,8 +86,12 @@ class GA(Heuristic):
                 # 必须产生新的
                 p,q=random.randint(0,len(self.TSP.city_index_groups)-1),random.randint(0,len(self.TSP.city_index_groups)-1)
                 pop[p],pop[q]=pop[q],pop[p]          # 第一次交叉
+                m,n=random.randint(0,len(self.TSP.city_index_groups)-1),random.randint(0,len(self.TSP.city_index_groups)-1)
+                pop[m],pop[n]=pop[n],pop[m]          # 第二次交叉
                 # m,n=random.randint(0,len(self.TSP.city_index_groups)-1),random.randint(0,len(self.TSP.city_index_groups)-1)
-                # pop[m],pop[n]=pop[n],pop[m]          # 第二次交叉
+                # pop[m],pop[n]=pop[n],pop[m]          # 第三次交叉
+                # m,n=random.randint(0,len(self.TSP.city_index_groups)-1),random.randint(0,len(self.TSP.city_index_groups)-1)
+                # pop[m],pop[n]=pop[n],pop[m]          # 第四次交叉
             new_pops.append(pop)
         return new_pops
     
